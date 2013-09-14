@@ -6,6 +6,45 @@
 /// Basic navigation buttons in mode line
 
 ////////////////////////////////////////////////////////////////////////////////
+/// How to install
+// Put this package (the whole directory) somewhere in your computer.
+// You're recommended to put it inside ~/.conkerorrc
+// If you place it inside .conkerorc, add this to your rc file to include it in
+// your conkeror
+//
+// let (path = get_home_directory()) {
+//   path.appendRelativePath(".conkerorrc");
+//   path.appendRelativePath("conkeror-mac-modeline-buttons");
+//   load_paths.unshift(make_uri(path).spec);
+//
+//   require("conkeror-mac-modeline-buttons.js");  
+// };
+//
+// If you put the package outside .conkerorrc folder, use this one
+//
+// load_paths.unshift("file://path/to/conkeror-mac-modeline-buttons/folder");
+// require("conkeror-mac-modeline-buttons.js");
+//
+// You also have to set the image path if you place the package outside
+// .conkerorrc. See the below section for more information
+
+////////////////////////////////////////////////////////////////////////////////
+/// How to use
+// Simply type M-x and activate one of these commands to show the buttons
+// cmmb-add-navigation-buttons (show navigation buttons)
+// cmmb-remove-navigation-buttons (hide navigation buttons)
+//
+// You can also bind the command that you want to any keystroke that you want
+
+////////////////////////////////////////////////////////////////////////////////
+/// Some configurations
+// If you want to use your own images, you can replace the images with the ones
+// already inside the images folder. You can also use your own image folder by
+// setting variable cmmb_image_path. Also, if you have placed the package
+// outside .conkerorrc, setting this variable is a must.
+// cmmb_image_path = "/path/to/images/folder";
+
+////////////////////////////////////////////////////////////////////////////////
 /// Steps how to add your own custom buttons list
 
 // First, create an empty array for holding the widgets
@@ -46,6 +85,8 @@
 // 			});
 
 // Finally, bind that two interactive commands to the keystrokes that you want
+
+
 
 //////////////////////
 /// include mode-line-button library
