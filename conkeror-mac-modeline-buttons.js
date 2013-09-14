@@ -40,6 +40,13 @@ function cmmb_add_buttons (buttons, prepend, widgets_array) {
   }
 }
 
+/// Function to restart the mode line
+function cmmb_restart_modeline(){
+  // restart mode line
+  mode_line_mode(false);
+  mode_line_mode(true);
+}
+
 /// Navigation buttons
 /// The array to hold all the mode line navigation button widgets
 var cmmb_navigation_widgets = new Array();
@@ -62,10 +69,9 @@ interactive("cmmb-add-navigation-buttons", "Add basic navigation buttons to the 
 			  if(cmmb_navigation_widgets.length == 0){
 				// add the button
 				cmmb_add_buttons(cmmb_navigation_buttons, true, cmmb_navigation_widgets);
-				
-				// restart mode line
-				mode_line_mode(false);
-				mode_line_mode(true);
+
+				// restart modeline
+				cmmb_restart_modeline();
 			  }			  
 			});
 /// Interactive function to hide the mode line navigation buttons
@@ -79,9 +85,8 @@ interactive("cmmb-remove-navigation-buttons", "Remove navigation buttons from mo
 			  // remove all widgets in the array
 			  cmmb_navigation_widgets.length = 0;
 
-			  // restart mode line
-			  mode_line_mode(false);
-			  mode_line_mode(true);
+			  // restart the mode line
+			  cmmb_restart_modeline();
 			});
 
 /// provide the library
