@@ -3,7 +3,7 @@
 /// Email: me@truongtx.me
 /// Version: 1.0
 
-/// Basic navigation buttons in mode line
+/// Basic buttons in mode line
 
 ////////////////////////////////////////////////////////////////////////////////
 /// How to install
