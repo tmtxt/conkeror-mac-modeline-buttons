@@ -5,16 +5,18 @@ require("mode-line-buttons.js");
 
 // The variable specifies the path to all the image
 // default is ~/.conkerorrc/tmtxt-conkeror-mac-modeline-buttons/images/
-var tmtxt_modeline_buttons_image_path = get_home_directory();
-tmtxt_modeline_buttons_image_path.appendRelativePath(".conkerorrc");
-tmtxt_modeline_buttons_image_path.appendRelativePath("tmtxt-conkeror-mac-modeline-buttons");
-tmtxt_modeline_buttons_image_path.appendRelativePath("images");
+var cmmb_image_path;
+cmmb_image_path = get_home_directory();
+cmmb_image_path.append(".conkerorrc");
+cmmb_image_path.append("tmtxt-conkeror-mac-modeline-buttons");
+cmmb_image_path.append("images");
+cmmb_image_path = make_uri(cmmb_image_path).spec;
 
 /// Function to replace make_button_widget
 function tmtxt_make_button_widget (command, attributes) {
     if (typeof attributes == "string")
         // Simple case
-        attributes = { src: tmtxt_modeline_buttons_image_path + attributes + ".png" };
+        attributes = { src: cmmb_image_path + attributes + ".png" };
 
     function new_widget (window) {
         button_widget.call(this, window);
@@ -46,7 +48,7 @@ function tmtxt_mode_line_add_buttons (buttons, prepend) {
 
 	// my custom code
 	if(typeof buttons[j][1]  == "string")
-	  buttons[j][1] = { src: "file:///Volumes/tmtxt/" + buttons[j][1] + ".png" };
+	  buttons[j][1] = { src: cmmb_image_path + buttons[j][1] + ".png" };
 
 	/// code from conkeror source file
 	var w = make_button_widget(buttons[j][0], buttons[j][1]);
@@ -60,8 +62,14 @@ function tmtxt_mode_line_add_buttons (buttons, prepend) {
 
 /// The array to hold the definition for the mode line buttons
 tmtxt_standard_mode_line_buttons = [
+    ["find-url", "open"],
+    ["find-url-new-buffer", "new"],
     ["back", "go-back"],
-    ["find-url-new-buffer", "new"]
+    ["forward", "go-forward"],
+    ["reload", "refresh"],
+    ["kill-current-buffer", "close"],
+    ["buffer-previous", "go-up"],
+    ["buffer-next", "go-down"],
 ];
 
 /// Interactive function to show the mode line buttons
@@ -71,7 +79,7 @@ interactive("tmtxt-add-mode-line-nav-buttons", "Add basic navigation buttons to 
 			  if(tmtxt_mode_line_button_widgets.length == 0){
 				// add the button
 				tmtxt_mode_line_add_buttons(tmtxt_standard_mode_line_buttons, true);
-
+				
 				// restart mode line
 				mode_line_mode(false);
 				mode_line_mode(true);
