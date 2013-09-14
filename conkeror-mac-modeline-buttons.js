@@ -45,11 +45,11 @@
 // cmmb_image_path = "/path/to/images/folder";
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Steps how to add your own custom buttons list
-
+/// Steps how to add your own custom buttons list function
+//
 // First, create an empty array for holding the widgets
 // var cmmb_navigation_widgets = new Array();
-
+//
 // Second, create an array for button definitions
 // cmmb_navigation_buttons = [
 //     ["find-url", "open"],
@@ -69,31 +69,29 @@
 // extension) in PNG format
 // By default, the images are located under
 // ~/.conkerorrc/conkeror-mac-modeline-buttons/images
-
+//
 // Next, define an interactive command like this and pass in the two arrays that
 // you have created before. This command is for adding the buttons
 // interactive("cmmb-add-navigation-buttons", "Add basic navigation buttons to the mode line",
 // 			function(I){
 // 			  cmmb_add_buttons(cmmb_navigation_buttons, true, cmmb_navigation_widgets);
 // 			});
-
+//
 // After that, define another interactive command for removing modeline buttons
 // and pass in the widgets array that you have created before
 // interactive("cmmb-remove-navigation-buttons", "Remove navigation buttons from mode line", 
 // 			function(I){
 // 			  cmmb_remove_buttons(cmmb_navigation_widgets);
 // 			});
-
+//
 // Finally, bind that two interactive commands to the keystrokes that you want
 
-
-
-//////////////////////
+////////////////////////////////////////////////////////////////////////////////
 /// include mode-line-button library
 load_paths.unshift("chrome://conkeror-contrib/content/");
 require("mode-line-buttons.js");
 
-//////////////////////
+////////////////////////////////////////////////////////////////////////////////
 /// Code for adding and removing buttons
 // The variable specifies the path to all the image
 // default is ~/.conkerorrc/conkeror-mac-modeline-buttons/images/
@@ -156,7 +154,7 @@ function cmmb_remove_buttons(widgets_array){
   cmmb_restart_modeline();
 }
 
-//////////////////////
+////////////////////////////////////////////////////////////////////////////////
 /// Navigation buttons
 /// The array to hold all the mode line navigation button widgets
 var cmmb_navigation_widgets = new Array();
@@ -183,8 +181,26 @@ interactive("cmmb-remove-navigation-buttons", "Remove navigation buttons from mo
 			  cmmb_remove_buttons(cmmb_navigation_widgets);
 			});
 
-//////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/// Editing buttons
+/// The array to hold all the mode line editing button widgets
+var cmmb_editing_widgets = new Array();
+/// The array to hold the definition for the mode line navigation buttons
+var cmmb_editing_buttons = [
+    ["kill-region", "cut"],
+    ["cmd_copy", "copy"],
+    ["yank", "paste"],
+];
+/// Interactive function to show the mode line editing buttons
+interactive("cmmb-add-editing-buttons", "Add basic editing buttons to the mode line",
+			function(I){
+			  cmmb_add_buttons(cmmb_editing_buttons, true, cmmb_editing_widgets);
+			});
+/// Interactive function to hide the mode line navigation buttons
+interactive("cmmb-remove-editing-buttons", "Remove editing buttons from mode line", 
+			function(I){
+			  cmmb_remove_buttons(cmmb_editing_widgets);
+			});
 
 /// provide the library
 provide("conkeror-mac-modeline-buttons");
