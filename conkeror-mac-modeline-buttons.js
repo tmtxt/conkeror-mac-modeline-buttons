@@ -202,5 +202,28 @@ interactive("cmmb-remove-editing-buttons", "Remove editing buttons from mode lin
 			  cmmb_remove_buttons(cmmb_editing_widgets);
 			});
 
+////////////////////////////////////////////////////////////////////////////////
+/// Download buttons
+/// The array to hold all the mode line download button widgets
+var cmmb_download_widgets = new Array();
+/// The array to hold the definition for the mode line navigation buttons
+var cmmb_download_buttons = [
+  ["download-manager-show-builtin-ui", "download"],
+  ["download-cancel", "close"],
+  ["download-retry", "refresh"],
+  ["download-resume", "go-forward"],
+  ["download-pause", "pause"],
+];
+/// Interactive function to show the mode line editing buttons
+interactive("cmmb-add-download-buttons", "Add download buttons to the mode line",
+			function(I){
+			  cmmb_add_buttons(cmmb_download_buttons, true, cmmb_download_widgets);
+			});
+/// Interactive function to hide the mode line navigation buttons
+interactive("cmmb-remove-download-buttons", "Remove download buttons from mode line", 
+			function(I){
+			  cmmb_remove_buttons(cmmb_download_widgets);
+			});
+
 /// provide the library
 provide("conkeror-mac-modeline-buttons");
