@@ -5,11 +5,52 @@
 
 /// Basic navigation buttons in mode line
 
+////////////////////////////////////////////////////////////////////////////////
+/// Steps how to add your own custom buttons list
+
+// First, create an empty array for holding the widgets
+// var cmmb_navigation_widgets = new Array();
+
+// Second, create an array for button definitions
+// cmmb_navigation_buttons = [
+//     ["find-url", "open"],
+//     ["find-url-new-buffer", "new"],
+//     ["back", "go-back"],
+//     ["forward", "go-forward"],
+//     ["reload", "refresh"],
+//     ["kill-current-buffer", "close"],
+//     ["buffer-previous", "go-up"],
+//     ["buffer-next", "go-down"],
+//   ["minibuffer-abort","cancel"],
+// ];
+// Each item in the array is also another array.
+// The first element in that array indicates the interactive command to be execute
+// when clicking on the button
+// The second element in that array is the name of the image file (without
+// extension) in PNG format
+// By default, the images are located under
+// ~/.conkerorrc/conkeror-mac-modeline-buttons/images
+
+// Next, define an interactive command like this and pass in the two arrays that
+// you have created before. This command is for adding the buttons
+// interactive("cmmb-add-navigation-buttons", "Add basic navigation buttons to the mode line",
+// 			function(I){
+// 			  cmmb_add_buttons(cmmb_navigation_buttons, true, cmmb_navigation_widgets);
+// 			});
+
+// After that, define another interactive command for removing modeline buttons
+// and pass in the widgets array that you have created before
+// interactive("cmmb-remove-navigation-buttons", "Remove navigation buttons from mode line", 
+// 			function(I){
+// 			  cmmb_remove_buttons(cmmb_navigation_widgets);
+// 			});
+
+// Finally, bind that two interactive commands to the keystrokes that you want
+
 //////////////////////
 /// include mode-line-button library
 load_paths.unshift("chrome://conkeror-contrib/content/");
 require("mode-line-buttons.js");
-
 
 //////////////////////
 /// Code for adding and removing buttons
@@ -79,7 +120,7 @@ function cmmb_remove_buttons(widgets_array){
 /// The array to hold all the mode line navigation button widgets
 var cmmb_navigation_widgets = new Array();
 /// The array to hold the definition for the mode line navigation buttons
-cmmb_navigation_buttons = [
+var cmmb_navigation_buttons = [
     ["find-url", "open"],
     ["find-url-new-buffer", "new"],
     ["back", "go-back"],
