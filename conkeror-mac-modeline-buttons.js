@@ -8,11 +8,11 @@ load_paths.unshift("chrome://conkeror-contrib/content/");
 require("mode-line-buttons.js");
 
 // The variable specifies the path to all the image
-// default is ~/.conkerorrc/tmtxt-conkeror-mac-modeline-buttons/images/
+// default is ~/.conkerorrc/conkeror-mac-modeline-buttons/images/
 var cmmb_image_path;
 cmmb_image_path = get_home_directory();
 cmmb_image_path.append(".conkerorrc");
-cmmb_image_path.append("tmtxt-conkeror-mac-modeline-buttons");
+cmmb_image_path.append("conkeror-mac-modeline-buttons");
 cmmb_image_path.append("images");
 cmmb_image_path = make_uri(cmmb_image_path).spec;
 
@@ -84,4 +84,4 @@ interactive("cmmb-remove-navigation-buttons", "Remove navigation buttons from mo
 			  mode_line_mode(true);
 			});
 
-provide("tmtxt-conkeror-mac-modeline-buttons");
+provide("conkeror-mac-modeline-buttons");
