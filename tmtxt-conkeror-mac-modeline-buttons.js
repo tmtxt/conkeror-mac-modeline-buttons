@@ -3,11 +3,18 @@
 load_paths.unshift("chrome://conkeror-contrib/content/");
 require("mode-line-buttons.js");
 
-/// Function to replace 
+// The variable specifies the path to all the image
+// default is ~/.conkerorrc/tmtxt-conkeror-mac-modeline-buttons/images/
+var tmtxt_modeline_buttons_image_path = get_home_directory();
+tmtxt_modeline_buttons_image_path.appendRelativePath(".conkerorrc");
+tmtxt_modeline_buttons_image_path.appendRelativePath("tmtxt-conkeror-mac-modeline-buttons");
+tmtxt_modeline_buttons_image_path.appendRelativePath("images");
+
+/// Function to replace make_button_widget
 function tmtxt_make_button_widget (command, attributes) {
     if (typeof attributes == "string")
         // Simple case
-        attributes = { src: "file:///Volumes/tmtxt/" + attributes + ".png" };
+        attributes = { src: tmtxt_modeline_buttons_image_path + attributes + ".png" };
 
     function new_widget (window) {
         button_widget.call(this, window);
